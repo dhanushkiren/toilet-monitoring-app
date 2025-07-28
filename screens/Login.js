@@ -4,18 +4,57 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert } from 'reac
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('supervisor'); // default selection
 
   const handleLogin = () => {
-    if (username === 'Dk' && password === 'Dk') {
+    if (userType === 'supervisor' && username === 'Dk' && password === 'Dk') {
       navigation.replace('SupervisorHome', { loggedIn: true });
+    } else if (userType === 'cleaner' && username === 'cl' && password === 'cl') {
+      navigation.replace('CleanerHome', { loggedIn: true });
     } else {
-      Alert.alert('Invalid credentials', 'Please try again.');
+      Alert.alert('Invalid credentials', 'Please check username, password or role.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Administrator Login</Text>
+      <Text style={styles.title}>Login</Text>
+
+      <View style={styles.switchContainer}>
+        <TouchableOpacity
+          style={[
+            styles.switchBtn,
+            userType === 'supervisor' && styles.activeSwitch,
+          ]}
+          onPress={() => setUserType('supervisor')}
+        >
+          <Text
+            style={[
+              styles.switchText,
+              userType === 'supervisor' && styles.activeText,
+            ]}
+          >
+            Supervisor
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.switchBtn,
+            userType === 'cleaner' && styles.activeSwitch,
+          ]}
+          onPress={() => setUserType('cleaner')}
+        >
+          <Text
+            style={[
+              styles.switchText,
+              userType === 'cleaner' && styles.activeText,
+            ]}
+          >
+            Cleaner
+          </Text>
+        </TouchableOpacity>
+      </View>
+
       <TextInput
         placeholder="Username"
         value={username}
@@ -30,7 +69,7 @@ const Login = ({ navigation }) => {
         style={styles.input}
       />
       <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
-        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.loginText}>Login as {userType}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -49,6 +88,29 @@ const styles = StyleSheet.create({
     color: '#2196F3',
     marginBottom: 30,
     textAlign: 'center',
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  switchBtn: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderColor: '#2196F3',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginHorizontal: 5,
+  },
+  activeSwitch: {
+    backgroundColor: '#2196F3',
+  },
+  switchText: {
+    color: '#2196F3',
+    fontWeight: '600',
+  },
+  activeText: {
+    color: '#fff',
   },
   input: {
     height: 50,

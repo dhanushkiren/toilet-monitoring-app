@@ -9,6 +9,10 @@ import SupervisorHomePage from '../screens/SupervisorHomePage';
 import ToiletDetails from '../screens/ToiletDetails';
 import CleanerManagementScreen from '../screens/CleanerManagementScreen';
 import CreateCleanerScreen from '../screens/CreateCleanerScreen';
+import CleanerHomeScreen from '../screens/CleanerHomeScreen';
+import ToiletCleaningScreen from '../screens/ToiletCleaningScreen';
+import InventoryRequestScreen from '../screens/InventoryRequestScreen';
+import DamageReportScreen from '../screens/DamageReportScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +28,10 @@ const UserStack = () => {
       <Stack.Screen name="ToiletDetails" component={ToiletDetails} />
       <Stack.Screen name="CleanerManagementScreen" component={CleanerManagementScreen} />
       <Stack.Screen name="CreateCleanerScreen" component={CreateCleanerScreen} />
+      <Stack.Screen name="CleanerHome" component={CleanerHomeScreen} />
+      <Stack.Screen name="ToiletCleaningScreen" component={ToiletCleaningScreen} />
+      <Stack.Screen name="InventoryRequestScreen" component={InventoryRequestScreen} />
+      <Stack.Screen name="DamageReportScreen" component={DamageReportScreen} />
     </Stack.Navigator>
   );
 };
